@@ -6,4 +6,4 @@ class Link(models.Model):
     short_code = models.CharField(max_length=15, blank=True, null=True, unique=True)
 
     def __str__(self):
-        return self.short_code
+        return self.short_code or "--"

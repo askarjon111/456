@@ -13,10 +13,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title text-center">Havola Qisqartiruvchi</h3>
-                        <form id="url-form">
+                        <form method='POST'>
+                            {% csrf_token %}
                             <div class="form-group">
                                 <label for="long-url">Havolangizni kiriting:</label>
-                                <input type="url/text" id="long-url" name="long-url" class="form-control" placeholder="https://masalan.uz" required>
+                                <input type="url/text" name="original_url" class="form-control" placeholder="https://masalan.uz" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-block">Qisqartirish</button>
                         </form>
@@ -32,21 +33,5 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById('url-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const longUrl = document.getElementById('long-url').value;
-            
-            // Simulating the URL shortening process
-            const shortUrl = 'https://short.url/' + btoa(longUrl).slice(0, 8); // Simple encoding to create a short URL
-
-            const shortUrlContainer = document.getElementById('short-url');
-            const shortUrlLink = document.getElementById('short-url-link');
-            
-            shortUrlLink.href = shortUrl;
-            shortUrlLink.textContent = shortUrl;
-            shortUrlContainer.style.display = 'block';
-        });
-    </script>
 </body>
 </html>
