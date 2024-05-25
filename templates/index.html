@@ -22,7 +22,7 @@
                             <button type="submit" class="btn btn-primary btn-block">Qisqartirish</button>
                         </form>
                         <div class="short-url mt-4" id="short-url" {% if not url %}style="display: none;"{% endif %}>
-                            <p>Qisqartirilgan link: <a href="#" target="_blank" id="short-url-link">{{ url }}</a></p>
+                            <p>Qisqartirilgan link: <a href="{{ url }}" target="_blank" id="short-url-link">{{ url }}</a></p>
                         </div>
                     </div>
                 </div>
