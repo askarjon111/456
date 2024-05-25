@@ -7,3 +7,8 @@ class Link(models.Model):
 
     def __str__(self):
         return self.short_code or "--"
+
+
+class Click(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    link = models.ForeignKey(Link, on_delete=models.SET_NULL, blank=True, null=True)

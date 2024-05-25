@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-    <div class="container">
-        <div class="row justify-content-center mt-5">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title text-center">Havola Qisqartiruvchi</h3>
-                        <form method='POST'>
-                            {% csrf_token %}
-                            <div class="form-group">
-                                <label for="long-url">Havolangizni kiriting:</label>
-                                <input type="url/text" name="original_url" class="form-control" placeholder="https://masalan.uz" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Qisqartirish</button>
-                        </form>
-                        <div class="short-url mt-4" id="short-url" {% if not url %}style="display: none;"{% endif %}>
-                            <p>Qisqartirilgan link: <a href="{{ url }}" target="_blank" id="short-url-link">{{ url }}</a></p>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h3 class="card-title text-center">Havola Qisqartiruvchi</h3>
+                    {% if request.user.is_authenticated %}
+                    <form method='POST'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="long-url">Havolangizni kiriting:</label>
+                            <input type="url/text" name="original_url" class="form-control" placeholder="https://masalan.uz" required>
                         </div>
+                        <button type="submit" class="btn btn-primary btn-block">Qisqartirish</button>
+                    </form>
+                    <div class="short-url mt-4" id="short-url" {% if not url %}style="display: none;"{% endif %}>
+                        <p>Qisqartirilgan link: <a href="{{ url }}" target="_blank" id="short-url-link">{{ url }}</a></p>
                     </div>
+                    {% else %}
+                    <p>Saytdan foydalanish uchun <a class="nav-link" href="{% url 'register' %}">ro'yxatdan o'ting</a>
+                        yoki saytga <a class="nav-link" href="{% url 'login' %}">kiring</a></p>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+</div>
+{% endblock content %}

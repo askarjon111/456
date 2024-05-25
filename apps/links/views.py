@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 
-from apps.links.models import Link
+from apps.links.models import Click, Link
 from apps.links.utils import generate_short_code
 
 
@@ -20,5 +20,7 @@ def home_view(request):
 def redirect_to_original(request, short_code):
     link = Link.objects.filter(short_code=short_code)
     if link.exists():
+        click = Click.objects.create(link=link.first())
+        click.save()
         return redirect(link.first().original_url)
     return render(request, '404.html')
