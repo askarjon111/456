@@ -12,7 +12,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect(reverse_lazy('home'))
+            return redirect(reverse_lazy('my_links'))
         else:
             messages.add_message(request, messages.WARNING, "Parol yoki username noto'g'ri")
 

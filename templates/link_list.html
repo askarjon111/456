@@ -10,6 +10,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Sizning linklaringiz</h4>
+                    <a href="{% url 'home' %}">Yangi qo'shish</a>
                 </div>
                 <div class="card-body">
                     {% if links %}
@@ -22,7 +23,7 @@
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <p>No links found.</p>
+                        <p>Sizda hech qanday link mavjud emas.</p>
                     {% endif %}
                 </div>
             </div>
