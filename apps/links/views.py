@@ -28,8 +28,9 @@ def redirect_to_original(request, short_code):
         return redirect(link.first().original_url)
     return render(request, '404.html')
 
+
 @login_required(login_url='login')
 def my_links(request):
     user = request.user
-    links = Link.objects.filter(user=user)
+    links = Link.objects.filter(user=user).order_by('-id')
     return render(request, 'link_list.html', {'links': links})
