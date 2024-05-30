@@ -12,4 +12,4 @@ class Link(models.Model):
 
 class Click(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    link = models.ForeignKey(Link, on_delete=models.SET_NULL, blank=True, null=True)
+    link = models.ForeignKey(Link, on_delete=models.SET_NULL, blank=True, null=True, related_name='clicks')
